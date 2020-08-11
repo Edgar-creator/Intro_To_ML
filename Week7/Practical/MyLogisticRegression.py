@@ -4,7 +4,6 @@ import numpy as np
 
 
 class MyLogisticRegression():
-    beta = np.array([])
     def __init__(self,epsilon=1e-6,step_size=1e-4,max_steps=1000,lambd=0,fit_intercept=False):
         self.epsilon = epsilon
         self.step_size = step_size
@@ -65,8 +64,18 @@ class MyLogisticRegression():
                 if abs(self.cost_func(X1,Y,beta) - old_cost) <= self.epsilon/3:
                     print("Gradient Descent converged at %s step" % i)
                     break
+        if self.fit_intercept is True:
+            self.intercept_=beta[0]
+            self.coef_ = beta[1:]
+        else:
+            self.intercept_ = []
+            self.coef_ = beta
+    
+    def fit(self,X,Y):
+        self.gradient_descent(X, Y)
         
-        self.beta=beta
-
-                
-     
+    def predict(self,X):
+        return np.where(V.logistic_func(xtest,beta)>0.5,1,0)
+    
+    
+    
