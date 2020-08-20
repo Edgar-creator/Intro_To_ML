@@ -65,7 +65,7 @@ class MyLogisticRegression():
         
     def predict(self,X):
         X = self.new(X)
-        return np.where(self.logistic_func(X,self.beta)>0.5,1,0)
+        return np.where(self.logistic_func(X,self.beta)>=0.5,1,0)
    
     
     
